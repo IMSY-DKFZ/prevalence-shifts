@@ -1,0 +1,60 @@
+mml mode=info task_list=['lapgyn4_surgical_actions'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['lapgyn4_instrument_count'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['lapgyn4_anatomical_actions'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['nerthus_bowel_cleansing_quality'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['hyperkvasir_therapeutic-interventions'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['cholec80_grasper_presence'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['cholec80_hook_presence'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['idle_action_recognition'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['brain_tumor_classification'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['brain_tumor_type_classification'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_enlarged_cardiomediastinum'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_cardiomegaly'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_edema'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_consolidation'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_pneumonia'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_pneumothorax'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_pleural_effusion'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['chexpert_fracture'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['pneumonia_classification'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['covid_xray_classification'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['deep_drid_dr_level'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['deep_drid_quality'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['kvasir_capsule_anatomy'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_wrist'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_shoulder'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_humerus'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_hand'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_forearm'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_finger'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
+mml mode=info task_list=['mura_xr_elbow'] tagging.all=+miccai?1337 preprocessing=default proj=mic23_predictions_reproduce
+sleep 2
