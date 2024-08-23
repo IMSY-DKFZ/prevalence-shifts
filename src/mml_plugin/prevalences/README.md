@@ -1,8 +1,10 @@
 # MML prevalences plugin
 
-This is the MML prevalences plugin, providing a task tag to reproduce the data splits used in paper 
-"Deployment of Image Analysis Algorithms under Prevalence Shifts", see [ArXiV](https://arxiv.org/abs/2303.12540). To 
-be published at the [MICCAI 2023](https://conferences.miccai.org/2023/en/) conference.
+This is the MML prevalences plugin, providing a task tag to reproduce the data splits used in the papers:
+  - "Deployment of Image Analysis Algorithms under Prevalence Shifts", see [Springer](https://doi.org/10.1007/978-3-031-43898-1_38) and [ArXiV](https://arxiv.org/abs/2303.12540). 
+  - "Navigating Prevalence Shifts in Image Analysis Algorithm Deployment" (unpublished)
+  
+This specific version has been updated to be used in conjunction with the latest version of MML.
 
 > DISCLAIMER: This package is a plugin for a larger library named mml. The mml dependency has not been published yet - 
 > this means so far the plugin cannot be installed. We are working on it and release this dependency later. 

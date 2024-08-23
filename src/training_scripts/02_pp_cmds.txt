@@ -1,0 +1,60 @@
+mml pp task_list=['lapgyn4_surgical_actions'] preprocessing=default
+sleep 2
+mml pp task_list=['lapgyn4_instrument_count'] preprocessing=default
+sleep 2
+mml pp task_list=['lapgyn4_anatomical_actions'] preprocessing=default
+sleep 2
+mml pp task_list=['nerthus_bowel_cleansing_quality'] preprocessing=default
+sleep 2
+mml pp task_list=['hyperkvasir_therapeutic-interventions'] preprocessing=default
+sleep 2
+mml pp task_list=['cholec80_grasper_presence'] preprocessing=default
+sleep 2
+mml pp task_list=['cholec80_hook_presence'] preprocessing=default
+sleep 2
+mml pp task_list=['idle_action_recognition'] preprocessing=default
+sleep 2
+mml pp task_list=['brain_tumor_classification'] preprocessing=default
+sleep 2
+mml pp task_list=['brain_tumor_type_classification'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_enlarged_cardiomediastinum'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_cardiomegaly'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_edema'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_consolidation'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_pneumonia'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_pneumothorax'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_pleural_effusion'] preprocessing=default
+sleep 2
+mml pp task_list=['chexpert_fracture'] preprocessing=default
+sleep 2
+mml pp task_list=['pneumonia_classification'] preprocessing=default
+sleep 2
+mml pp task_list=['covid_xray_classification'] preprocessing=default
+sleep 2
+mml pp task_list=['deep_drid_dr_level'] preprocessing=default
+sleep 2
+mml pp task_list=['deep_drid_quality'] preprocessing=default
+sleep 2
+mml pp task_list=['kvasir_capsule_anatomy'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_wrist'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_shoulder'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_humerus'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_hand'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_forearm'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_finger'] preprocessing=default
+sleep 2
+mml pp task_list=['mura_xr_elbow'] preprocessing=default
+sleep 2

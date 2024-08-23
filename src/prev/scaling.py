@@ -1,3 +1,5 @@
+from typing import Tuple
+
 import torch
 
 
@@ -13,10 +15,11 @@ def imbalance_ratio(classes: torch.Tensor) -> float:
     return max_cases / min_cases
 
 
-def scale_prevalences_ir(logits: torch.Tensor, classes: torch.Tensor, ir: float = 1., base_seed: int = 42):
+def scale_prevalences_ir(logits: torch.Tensor, classes: torch.Tensor, ir: float = 1., base_seed: int = 42) -> Tuple[
+    torch.Tensor, torch.Tensor]:
     """
     Scales prevalences linearly based on target imbalance ratio, returns a subsampled set of logits and classes
-    accordingly.
+    accordingly. Ensures reproducibility by the seed parameter.
     """
     # check if given imbalance ratio is valid
     if ir < 1:
@@ -40,7 +43,7 @@ def scale_prevalences_ir(logits: torch.Tensor, classes: torch.Tensor, ir: float 
             # downsample all but the max_class
             if i != max_class:
                 class_prevalences[i] = (class_prevalences[i] * max_cases) / (
-                            min_cases * ir)  # undersample smaller classes
+                        min_cases * ir)  # undersample smaller classes
                 # raise error if class is too small
                 if class_prevalences[i] < 9:
                     raise ImpossibleScalingError(f'{torch.bincount(classes)} and ir: {ir}')
@@ -58,3 +61,4 @@ def scale_prevalences_ir(logits: torch.Tensor, classes: torch.Tensor, ir: float 
     final_indices = torch.stack(final_indices)
     # return the logits and classes for the final idices
     return logits[final_indices], classes[final_indices]
+

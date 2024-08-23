@@ -1,11 +1,11 @@
-torch==2.0.1
+torch==2.3.1
 matplotlib==3.7.1
-numpy==1.24.3
-scikit-learn==1.2.2
+numpy==1.26.4
+scikit-learn==1.3.2
 scipy==1.10.1
-pandas==2.0.1
+pandas==2.0.3
 seaborn==0.12.2
-plotly==5.14.1
+plotly==5.22.0
 Pillow==9.5.0
 jupyter==1.0.0
 progiter==2.0.0
@@ -13,3 +13,5 @@ kaleido==0.2.1
 MetricsReloaded @  git+https://github.com/Project-MONAI/MetricsReloaded@0a0b4926796648cdf7fa152a7249eb20a1d6b2f0#egg=MetricsReloaded
 expected_cost==0.0.3
 psrcal==0.0.1
+quapy==0.1.8.1
+pdf2image==1.17.0

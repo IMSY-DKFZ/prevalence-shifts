@@ -2,8 +2,15 @@
 # a. remove error when calibration fails
 # b. remove auto usage of bias if not requested (to properly model temp scaling)
 
+import importlib
+import warnings
+
 import psrcal.calibration
+import quapy.data.datasets
 import torch
+
+importlib.reload(warnings)  # fix https://github.com/HLT-ISTI/QuaPy/issues/40
+quapy.data.datasets.warn('')
 
 
 # a. deactivate exception with non-converged optimization loop
@@ -33,3 +40,4 @@ def calibrate_wo_bias(self, scores):
 
 
 psrcal.calibration.AffineCal.calibrate = calibrate_wo_bias
+

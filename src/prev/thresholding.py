@@ -1,85 +1,13 @@
+import enum
 from typing import Dict, Optional
 
 import numpy as np
 import torch
 import torch.nn.functional as F
+from expected_cost.ec import average_cost
 from sklearn.metrics import matthews_corrcoef, f1_score, balanced_accuracy_score
 
-from src.prev.utils import Metric
-from expected_cost.ec import average_cost
-
-
-def find_sensitivity_threshold(labels: torch.Tensor, logits: torch.Tensor,
-                               min_class: int, step: float = 0.01) -> float:
-    """
-    Finds threshold for .95 sensitivity
-    """
-    threshold = 0
-    soft_scores = F.softmax(logits, dim=1)
-    sensitivity = 1
-    while sensitivity > 0.95:
-        threshold_preds = soft_scores[:, min_class] > threshold
-        P = torch.sum(labels == min_class)
-        TP = torch.sum((labels == min_class) & (threshold_preds == 1))
-        sensitivity = TP / P
-        threshold += step
-    return threshold - 2 * step
-
-
-def accuracy(labels: torch.Tensor, preds: torch.Tensor) -> float:
-    return torch.sum(labels == preds) / len(labels)
-
-
-def find_best_threshold(labels: torch.Tensor, logits: torch.Tensor, min_class: int = 0,
-                        metric: Metric = Metric.ACCURACY, step: float = 0.01,
-                        priors: Optional[np.ndarray] = None) -> float:
-    """Compute threshold for a given metric
-
-    :param labels: true labels
-    :type labels: torch.Tensor
-    :param logits: logit values
-    :type logits: torch.Tensor
-    :param min_class: index of smallest class used to compute F1 score, defaults to 0
-    :type min_class: int, optional
-    :param metric: metric to be computed, defaults to Metric.ACCURACY
-    :type metric: Metric, optional
-    :param step: step size in threshold sweep, defaults to 0.01
-    :type step: float, optional
-    :param priors: priors to be used in EC computation, defaults to None
-    :type priors: Optional[np.ndarray], optional
-    :raises RuntimeError: raised when non binary task provided
-    :raises ValueError: priors provided for metric which does not require them
-    :return: threshold value
-    :rtype: float
-    """
-    if logits.size(1) > 2:
-        raise RuntimeError(f'Was given a non-binary task (C={logits.size(1)} for threshold search!')
-    if metric != Metric.EC_ADJUSTED and priors:
-        raise ValueError('Priors given for metric without weighing!')
-    threshold = 0
-    if (metric == Metric.ACCURACY) | (metric == Metric.MCC) | (metric == Metric.F1):
-        best_value = -1
-    else:
-        best_value = 1000
-    logits = F.softmax(logits, dim=1)[:, 0]
-    for t in torch.arange(0, 1 + step, step):
-        preds = (logits < t)
-        if metric == Metric.EC or metric == Metric.EC_ADJUSTED or metric == Metric.EC_NORM:
-            value = average_cost(labels, preds, priors=priors)
-            if best_value > value:
-                threshold = t
-                best_value = value
-        else:
-            if metric == Metric.ACCURACY:
-                value = accuracy(labels, preds)
-            elif metric == Metric.MCC:
-                value = matthews_corrcoef(labels, preds)
-            elif metric == Metric.F1:
-                value = f1_score(labels, preds, pos_label=min_class)
-            if best_value < value:
-                threshold = t
-                best_value = value
-    return threshold.item()
+from src.prev.metrics import Metric, accuracy
 
 
 def find_best_thresholds(labels: torch.Tensor, logits: torch.Tensor, min_class: int = 0,
@@ -158,3 +86,11 @@ def find_best_thresholds(labels: torch.Tensor, logits: torch.Tensor, min_class: 
             Metric.EC_NORM: ec_threshold, Metric.EC_NORM_ADJUSTED: ec_adjusted_threshold,
             Metric.EC_EST: ec_est_threshold, Metric.EC_NORM_EST: ec_est_threshold,
             Metric.BALANCED_ACC: balanced_acc_threshold}
+
+
+class ThresholdingMethod(enum.Enum):
+    """Binary decision rule strategys - either argmax or optimization on development / deployment data."""
+    ARGMAX = "argmax"
+    DEV_TEST = "dev test"
+    APP_TEST = "app test"
+

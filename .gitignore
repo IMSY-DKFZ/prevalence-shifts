@@ -3,4 +3,7 @@
 !/data/mic23_predictions_original_0/PREDICTIONS/DSET015_hyperkvasir%TASK_hyperkvasir_therapeutic-interventions_miccai/**
 !/data/mic23_predictions_original_0/PREDICTIONS/DSET001_lapgyn4%TASK_lapgyn4_anatomical_actions_miccai/**
 !/data/mic23_predictions_original_0/PREDICTIONS/DSET001_lapgyn4%TASK_lapgyn4_surgical_actions_miccai/**
+!/data/little_guys_high_ir.png
+!/data/little_guys_balanced.png
+!/data/identity graph.pdf
 /mml.env
