@@ -9,11 +9,6 @@ results please use the respective git tag and check out "miccai23".
 
 ## Overview
 
-> DISCLAIMER: The mml dependency has not been published yet - this means so far the training part cannot be 
-> reproduced publicly. We are working on it and release this dependency later. All evaluation and plotting scripts are 
-> available. We provide three sample tasks with the produced predictions in /data/. [mml-free reproducibility](#mml-free-reproducibility)
-> provides instructions to produce plots for the sample tasks.
-
 - [code structure](#code-structure)
 - [installation](#installation)
 - [image data preparation](#image-data-preparation)
@@ -25,7 +20,7 @@ results please use the respective git tag and check out "miccai23".
 
 The code of this repository is structured as follows in `src`:
 
- - `mml-plugin` implements a [`mml`](https://git.dkfz.de/imsy/ise/mml) plugin to re-distribute samples within a task according to our needs
+ - `mml_plugin` implements a [`mml`](https://github.com/IMSY-DKFZ/mml) plugin to re-distribute samples within a task according to our needs
  - `prev` contains definitions and routines that are shared through our experiments (note that `__init__.py` modifies `psrcal` behaviour)
  - `training_scripts` contains all commands with respect to task data (prepare, preprocess) and neural networks (train and predict) 
  - the notebooks `1_...` to `8_...` contain the steps to reproduce our experiments 
@@ -38,6 +33,9 @@ To run the notebooks and reproduce the plots exactly you might need to install t
  - install the font (the details of this step depend on your OS)
 
 ## mml-free reproducibility
+
+`mml` was primarily used to handle the imaging datasets, run the model training and produce the prediction logits for 
+this project. All analysis on top can be done without `mml`, which we explain here:
 
  - create a virtualenv with conda and install python 3.10, install the requirements
 
@@ -57,9 +55,10 @@ pip install -r requirements.txt
     - `6_decision_rule.ipynb` - Research Question 2b, creates figure 9
     - `7_validation_metrics.ipynb` - Research Question 2c, creates figure 10
     - `8_uncertainty.ipynb` - Creates uncertainty tables
+
 ## installation
 
- > DISCLAIMER: mml is not yet public. Please follow the installation instructions from [mml-free reproducibility](#mml-free-reproducibility).
+These instructions handle the **full** reproduction including the installation of `mml` (see above for a light setup).
 
  - create a virtualenv with conda and install python 3.10
 
@@ -69,11 +68,11 @@ conda create --yes --name prev python=3.10
 conda activate prev
 ```
 
- - install [mml-core](https://imsy.pages.dkfz.de/ise/mml/install.html#virtual-environment) and [mml-data plugin](https://imsy.pages.dkfz.de/ise/mml/api/plugins/data.html)
+ - install [mml-core](https://mml.readthedocs.io/en/latest/install.html) and [mml-tasks plugin](https://mml.readthedocs.io/en/latest/api/plugins/tasks.html)
 
 ```commandline
-pip install --index-url https://mmlToken:<personal_access_token>@git.dkfz.de/api/v4/projects/89/packages/pypi/simple mml-core==0.13.3
-pip install mml-data==0.4.1 --index-url https://__token__:<your_personal_token>@git.dkfz.de/api/v4/projects/89/packages/pypi/simple
+pip install mml-core
+pip install mml-tasks
 ```
 
  - install local prevalence plugin and other requirements
@@ -86,8 +85,7 @@ cd src/mml_plugin/prevalences
 pip install .
 ```
 
- - install the fonts (http://mirrors.ctan.org/fonts/newcomputermodern/otf/NewCM10-Regular.otf)
- - setup environment variables for `mml`
+ - setup [environment variables](https://mml.readthedocs.io/en/latest/install.html#local-variables) for `mml`
 
 ```commandline
 cd ../../..
@@ -99,7 +97,8 @@ conda activate prev
 
 ## image data preparation
 
-> DISCLAIMER: This section requires mml which is not yet public.
+> Note: We do not own the datasets used for this study and many datasets have to be downloaded manually. Instructions 
+> will be given along the "01_create_cmds" process. 
 
 - the data and predictions generation process in handled with the `mml` framework
 - the commands to leverage `mml` are generated in `1_generate_predictions.ipynb` and stored in `training_scripts`
@@ -112,7 +111,7 @@ conda activate prev
 
 ## training and predictions
 
-> DISCLAIMER: This section requires mml which is not yet public.
+> Note: Model training requires appropriate hardware (e.g. a GPU), ideally on a distributed cluster. 
 
 - once more `mml` is leveraged for this step and the commands are generated in `1_generate_predictions.ipynb` and stored in `training_scripts`
   - for uncertainty assessment (`8_uncertainty.ipynb`):
