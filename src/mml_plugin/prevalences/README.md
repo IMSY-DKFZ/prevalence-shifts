@@ -6,12 +6,13 @@ This is the MML prevalences plugin, providing a task tag to reproduce the data s
   
 This specific version has been updated to be used in conjunction with the latest version of MML.
 
-> DISCLAIMER: This package is a plugin for a larger library named mml. The mml dependency has not been published yet - 
-> this means so far the plugin cannot be installed. We are working on it and release this dependency later. 
+> NOTE: This package is a plugin for a larger framework named mml. It is only necessary to install mml-core and this 
+> plugin if you intend to train your own models aka. generate logit predictions.
 
 # Install
 
-You need to install `mml-core` first, see [documentation](https://imsy.pages.dkfz.de/ise/mml/). Afterward you can 
+You need to install `mml-core` first, see [documentation](https://mml.readthedocs.io/en/latest/index.html). 
+Detailed instructions are given at the top level README of this repository. After following these steps you can 
 
 ```commandline
 pip install .
