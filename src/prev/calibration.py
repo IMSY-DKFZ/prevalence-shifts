@@ -84,4 +84,3 @@ def calc_calibration_metrics(logits: torch.Tensor, labels: torch.Tensor) -> Dict
     brier = Brier(log_probs, labels, norm=False).item()
     brier_norm = Brier(log_probs, labels, norm=True).item()
     return {'cwce': cwce, 'rbs': rbs, 'bs': brier, 'nbs': brier_norm}
-

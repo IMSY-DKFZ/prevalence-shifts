@@ -61,4 +61,3 @@ def scale_prevalences_ir(logits: torch.Tensor, classes: torch.Tensor, ir: float 
     final_indices = torch.stack(final_indices)
     # return the logits and classes for the final idices
     return logits[final_indices], classes[final_indices]
-

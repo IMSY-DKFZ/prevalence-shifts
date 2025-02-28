@@ -96,7 +96,8 @@ def plot_aggregate_results(info_df: pd.DataFrame,
                            font_size: float = 20.0,
                            opacity: float = 0.15,
                            size: Optional[Tuple[int, int]] = None,
-                           line_width: float = 4.):
+                           line_width: float = 4.,
+                           plot_lines_later: bool = False):
     """A shared plotting function for consistent figures. Generates a line plot."""
     # backwards compatibility (line_ids is the new "metrics")
     if len(line_ids) == 0 and metrics is None:
@@ -113,8 +114,8 @@ def plot_aggregate_results(info_df: pd.DataFrame,
 
     x = list(np.arange(1, 10.5, 0.5))
     x_rev = x[::-1]
-
-    def make_lines(results, line_name, color):
+    traces=[]
+    def make_lines(results, line_name, color, traces):
         y = list(np.nanmean(results, axis=0))
         if ci == Confidence.STD:
             y_upper = list(np.nanmean(results, axis=0) + np.nanstd(results, axis=0))
@@ -134,12 +135,16 @@ def plot_aggregate_results(info_df: pd.DataFrame,
                 fillcolor="rgba" + str(color)[:-1] + f", {opacity})"
 
             ))
-        fig.add_trace(go.Scatter(
+        trace = go.Scatter(
             x=x, y=y,
             name=line_name,
             line_color="rgb" + str(color),
-            line_width=line_width
-        ))
+            line_width=line_width,
+            )
+        if plot_lines_later:
+            traces.append(trace)
+        else:
+            fig.add_trace(trace)
 
     # pallete = [ImageColor.getcolor(color, "RGB") for color in px.colors.qualitative.Plotly]
     fig = go.Figure()
@@ -169,12 +174,14 @@ def plot_aggregate_results(info_df: pd.DataFrame,
         else:
             # apply new extraction scheme
             results = line_values_extraction_func(results_df=info_df, line_identifier=line_identifier, delta=delta)
-        make_lines(results, name, color)
+        make_lines(results, name, color, traces)
+    if plot_lines_later:
+        for trace in traces: fig.add_trace(trace)
     fig.update_traces(mode='lines')
     if bound is not None:
         fig.update_layout(yaxis_range=bound)
     fig.update_layout(xaxis_title="Imbalance ratio", yaxis_title=y_axis_title, title=title, font_size=font_size,
-                      template='plotly', legend_itemsizing='constant')
+                      template='plotly_white', legend_itemsizing='constant')
     if size is not None:
         fig.update_layout(autosize=False, width=size[0], height=size[1])
     fig['layout']['font']['family'] = "NewComputerModern10"
@@ -285,7 +292,7 @@ def multiplot(rows: int = 2, cols: int = 2, subplts: Sequence = tuple(), x_title
                                  vertical_spacing=vertical_spacing,
                                  shared_xaxes=shared_xaxes,
                                  shared_yaxes=shared_yaxes)
-    fig.update_layout(template='plotly')
+    fig.update_layout(template='plotly_white')
     fig.update_annotations(font_size=20, font_color='black', bgcolor='white')
     for i, subplt in enumerate(subplts):
         for value in subplt['data']:
@@ -373,4 +380,3 @@ def add_ir_annotation(fig, subplot_axis_no, ir_value=10):
         bordercolor="black",  # Border color of the annotation box
         borderwidth=1,  # Border width of the annotation box
     )
-

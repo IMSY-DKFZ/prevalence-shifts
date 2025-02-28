@@ -23,6 +23,12 @@ binary_tasks = ['hyperkvasir_therapeutic-interventions', 'cholec80_grasper_prese
                 'kvasir_capsule_anatomy', 'mura_xr_wrist', 'mura_xr_shoulder', 'mura_xr_humerus',
                 'mura_xr_hand', 'mura_xr_forearm', 'mura_xr_finger', 'mura_xr_elbow']
 
+# identifiers for the example tasks
+example_tasks = ['lapgyn4_anatomical_actions', 'lapgyn4_surgical_actions', 'hyperkvasir_therapeutic-interventions']
+
+# identifiers for the example binary tasks
+example_binary_tasks = ['hyperkvasir_therapeutic-interventions']
+
 task_name_map = {'lapgyn4_surgical_actions': 'LapGyn4<br>(surg. ac.)',
                  'lapgyn4_instrument_count': 'LapGyn4<br>(inst. cnt.)',
                  'lapgyn4_anatomical_actions': 'LapGyn4<br>(ana. ac.)',
@@ -105,4 +111,3 @@ def get_values(task: str, data_root: Path, proj: str = 'mic23_predictions_origin
     # return as clearly descriptive dict
     return {Kind.LOGITS: {Split.DEV_CAL: val_logits, Split.DEV_TEST: dev_test_logits, Split.APP_TEST: app_test_logits},
             Kind.LABELS: {Split.DEV_CAL: val_labels, Split.DEV_TEST: dev_test_labels, Split.APP_TEST: app_test_labels}}
-
