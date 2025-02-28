@@ -32,7 +32,7 @@ To run the notebooks and reproduce the plots exactly you might need to install t
  - place it in the `/data` folder at project root (necessary for notebook 5)
  - install the font (the details of this step depend on your OS)
 
-## results for example tsks
+## results for example tasks
 
 `mml` was primarily used to handle the imaging datasets, run the model training and produce the prediction logits for 
 this project. Here we show how to obtain results for 3 example tasks without the use of `mml`:
@@ -52,7 +52,7 @@ pip install -r requirements.txt
     - `4_calibration.ipynb` - Research Question 2a, creates figure 6
     - `6_decision_rule.ipynb` - Research Question 2b, creates figure 9
     - `7_validation_metrics.ipynb` - Research Question 2c, creates figure 10
-  - In each of the notebooks set `EXAMPLE_TASKS_ONLY = False` in the first cell to limit the analysys to tasks available without access to mml.
+  - In each of the notebooks set `EXAMPLE_TASKS_ONLY = True` in the first cell to limit the analysys to tasks available without access to mml.
 
 ## installation
 
